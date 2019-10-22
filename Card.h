@@ -9,7 +9,15 @@ const string ranks[] = {"Ace","2","3","4","5","6","7","8","9","10","Jack","King"
 const string suits[] = {"Clubs","Diamonds","Hearts","Spades"};
 
 class Card {
+public:
+    Card();
+    Card(int card);
+    string CardName(int card);
 
+private:
+    int currCard;
+    string suit;
+    string rank;
 };
 
 

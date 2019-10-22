@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ctime>
 #include <cctype>
 #include "Card.h"
 #include "Deck.h"
@@ -12,10 +13,13 @@ int main() {
     int compValue, userValue, nWin = 0, nLoss = 0, nTie = 0;
     srand(time(NULL));
 
+    Card c;
+
     play = true;
     while(play) {
         // assign values to computer and user
         compValue = rand() % 52;
+
         userValue = rand() % 52;
 
         // get user's bet

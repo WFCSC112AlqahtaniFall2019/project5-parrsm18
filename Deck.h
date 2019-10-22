@@ -4,6 +4,8 @@
 #include "Card.h"
 
 class Deck {
+public:
+
 
 private:
     Card* cards;
