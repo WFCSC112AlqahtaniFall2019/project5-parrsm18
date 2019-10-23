@@ -92,6 +92,7 @@ int main() {
         /*if ((nWin+nLoss+nTie) == 26){
             break;
         }*/
+        //Ends the game if there are no cards left in the deck
         if (newgame.getCardsLeft() == 0) {
             cout << "No cards left in deck!" << endl;
             cout << "Thanks for playing!" << endl;
