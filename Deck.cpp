@@ -14,22 +14,27 @@ Deck::Deck() { //Constructor
 
 //Destructor
 Deck::~Deck() {
+    cout << "Destructor called" << endl;
     delete[] cards;
 }
 
 //Copy Constructor
 Deck::Deck(const Deck& deckClass) {
-    cards = new Card;
-    *cards = *(deckClass.cards);
+    cout << "Copy constructor called." << endl;
     arraySize = deckClass.arraySize;
     cardsLeft = deckClass.cardsLeft;
+    cards = new Card[arraySize];
+    for (int i = 0; i < arraySize; i++){
+        cards[i] = deckClass.cards[i];
+    }
 }
 
 //Copy Assignment Operator
-Deck& Deck::operator=(const Deck& deckToCopy) {
-    Deck temp(deckToCopy); // copy constructor temp
-    swap(cards, temp.cards); //built-in swap
-
+Deck &Deck::operator=(Deck deckToCopy) {// copy constructor temp
+    cout << "Copy assignment operator called" << endl;
+    swap(cards, deckToCopy.cards); //built-in swap
+    arraySize = deckToCopy.arraySize;
+    cardsLeft = deckToCopy.cardsLeft;
     return *this;
 }
 

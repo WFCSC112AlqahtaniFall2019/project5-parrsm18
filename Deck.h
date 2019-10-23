@@ -9,7 +9,7 @@ public:
     Deck();
     ~Deck();
     Deck(const Deck& deckClass);
-    Deck& operator=(const Deck& deckToCopy);
+    Deck& operator=(Deck deckToCopy);
     void PopulateDeck();
     bool AddCard(Card newCard);
     Card RemoveCard();
