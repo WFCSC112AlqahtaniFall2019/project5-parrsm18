@@ -8,11 +8,12 @@ using namespace std;
 
 int main() {
 
-    Deck newgame;
-    Deck discard;
-    newgame.PopulateDeck();
-    newgame.Shuffle();
+    Deck newgame; //Creates a new deck
+    Deck discard; //Creates a new deck to be filled with the discard pile
+    newgame.PopulateDeck(); //Populates the deck with 52 Cards
+    newgame.Shuffle(); //Shuffles deck
 
+    //Creates two card objects to be compared throughout the game
     Card user;
     Card computer;
 
@@ -24,7 +25,8 @@ int main() {
 
 
     play = true;
-    while(play) {
+    while (play) {
+        //Removes the user's card and computer's card from top of deck and adds them to the discard deck
         user = newgame.RemoveCard();
         computer = newgame.RemoveCard();
         discard.AddCard(user);
@@ -33,7 +35,7 @@ int main() {
         // get user's bet
         cout << "Computer's value is " << computer.CardName() << endl;
         invalid = true;
-        while(invalid) {
+        while (invalid) {
             cout << "Do you think your number is higher or lower? (H/L)" << endl;
             cin >> response;
             if (toupper(response.at(0)) == 'H') {
@@ -52,10 +54,10 @@ int main() {
         }
 
         // determine outcome
-        if((user > computer && guessedHigher) || (computer > user && !guessedHigher)) {
+        if ((user > computer && guessedHigher) || (computer > user && !guessedHigher)) {
             cout << "Great! You're right:" << endl;
             nWin++;
-        } else if((computer > user && guessedHigher) || (user > computer && !guessedHigher)) {
+        } else if ((computer > user && guessedHigher) || (user > computer && !guessedHigher)) {
             cout << "Sorry, you're wrong:" << endl;
             nLoss++;
         } else {
@@ -63,13 +65,14 @@ int main() {
             nTie++;
         }
         cout << "\tyour value is " << user.CardName() << endl;
+
         //Testing Discard Object
-        cout << "Cards in discard pile: " << discard.getCardsLeft() << endl;
+        //cout << "Cards in discard pile: " << discard.getCardsLeft() << endl;
 
 
         // ask user to play again
         invalid = true;
-        while(invalid) {
+        while (invalid) {
             cout << "Play again? (Y/N)" << endl;
             cin >> response;
             if (toupper(response.at(0)) == 'Y') {
@@ -89,11 +92,14 @@ int main() {
         /*if ((nWin+nLoss+nTie) == 26){
             break;
         }*/
-        if (newgame.getCardsLeft() == 0){
-            break;
+        if (newgame.getCardsLeft() == 0) {
+            cout << "No cards left in deck!" << endl;
+            cout << "Thanks for playing!" << endl;
+            cout << "Your record was " << nWin << "-" << nLoss << "-" << nTie << " (W-L-T)" << endl;
+            return 0;
         }
     }
-
+    
     // output stats
     cout << "Thanks for playing!" << endl;
     cout << "Your record was " << nWin << "-" << nLoss << "-" << nTie << " (W-L-T)" << endl;
