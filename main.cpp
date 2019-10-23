@@ -7,23 +7,31 @@
 using namespace std;
 
 int main() {
+
+    Deck newgame;
+    Deck discard;
+    newgame.PopulateDeck();
+    newgame.Shuffle();
+
+    Card user;
+    Card computer;
+
     cout << "Welcome to Blind Man's Bluff" << endl << endl;
     bool play, invalid, guessedHigher;
     string response;
     int compValue, userValue, nWin = 0, nLoss = 0, nTie = 0;
     srand(time(NULL));
 
-    Card c;
 
     play = true;
     while(play) {
-        // assign values to computer and user
-        compValue = rand() % 52;
-
-        userValue = rand() % 52;
+        user = newgame.RemoveCard();
+        computer = newgame.RemoveCard();
+        discard.AddCard(user);
+        discard.AddCard(computer);
 
         // get user's bet
-        cout << "Computer's value is " << compValue << endl;
+        cout << "Computer's value is " << computer.CardName() << endl;
         invalid = true;
         while(invalid) {
             cout << "Do you think your number is higher or lower? (H/L)" << endl;
@@ -44,17 +52,20 @@ int main() {
         }
 
         // determine outcome
-        if((compValue < userValue && guessedHigher) || (compValue > userValue && !guessedHigher)) {
+        if((user > computer && guessedHigher) || (computer > user && !guessedHigher)) {
             cout << "Great! You're right:" << endl;
             nWin++;
-        } else if((compValue > userValue && guessedHigher) || (compValue < userValue && !guessedHigher)) {
+        } else if((computer > user && guessedHigher) || (user > computer && !guessedHigher)) {
             cout << "Sorry, you're wrong:" << endl;
             nLoss++;
         } else {
             cout << "It's a tie:" << endl;
             nTie++;
         }
-        cout << "\tyour value is " << userValue << endl;
+        cout << "\tyour value is " << user.CardName() << endl;
+        //Testing Discard Object
+        cout << "Cards in discard pile: " << discard.getCardsLeft() << endl;
+
 
         // ask user to play again
         invalid = true;
@@ -74,6 +85,12 @@ int main() {
                 cout << "Invalid response..." << endl;
                 invalid = true;
             }
+        }
+        /*if ((nWin+nLoss+nTie) == 26){
+            break;
+        }*/
+        if (newgame.getCardsLeft() == 0){
+            break;
         }
     }
 

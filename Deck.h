@@ -3,8 +3,18 @@
 
 #include "Card.h"
 
+
 class Deck {
 public:
+    Deck();
+    ~Deck();
+    Deck(const Deck& deckClass);
+    Deck& operator=(const Deck& deckToCopy);
+    void PopulateDeck();
+    bool AddCard(Card newCard);
+    Card RemoveCard();
+    void Shuffle();
+    int getCardsLeft();
 
 
 private:

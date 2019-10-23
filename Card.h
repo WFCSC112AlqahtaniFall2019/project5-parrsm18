@@ -11,13 +11,13 @@ const string suits[] = {"Clubs","Diamonds","Hearts","Spades"};
 class Card {
 public:
     Card();
-    Card(int card);
-    string CardName(int card);
+    Card(int rank, int suit);
+    bool operator> (Card computer);
+    string CardName();
 
 private:
-    int currCard;
-    string suit;
-    string rank;
+    int suit;
+    int rank;
 };
 
 
